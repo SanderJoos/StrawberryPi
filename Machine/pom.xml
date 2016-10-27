@@ -8,11 +8,11 @@
   </parent>
 
     <groupId>StrawberryPi</groupId>
-    <artifactId>Machine</artifactId>
+    <artifactId>StrawberryPi-Machine</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>Machine</name>
+    <name>StrawberryPi-Machine</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

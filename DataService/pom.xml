@@ -8,11 +8,11 @@
   </parent>
 
     <groupId>StrawberryPi</groupId>
-    <artifactId>DataService</artifactId>
+    <artifactId>StrawberryPi-DataService</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>DataService</name>
+    <name>StrawberryPi-DataService</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
