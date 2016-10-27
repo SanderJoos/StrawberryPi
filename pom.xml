@@ -3,9 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>StrawberryPi</groupId>
     <artifactId>StrawBerryPi</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+  <modules>
+    <module>DataService</module>
+    <module>Machine</module>
+  </modules>
 </project>
