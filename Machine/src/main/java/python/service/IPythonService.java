@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package python.service;
+
+import entities.Measurement;
 
 /**
  *
- * @author Tim
+ * @author Sander_2
  */
-public class MeasurementService {
+public interface IPythonService {
+    
+    public Measurement getCurrentMeasurement();
     
 }
