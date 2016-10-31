@@ -5,6 +5,7 @@
  */
 package rest;
 
+import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -13,22 +14,23 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
+import service.MeasurementService;
 
 /**
  * REST Web Service
  *
  * @author Tim
  */
-@Path("HumREST")
+@Path("hum")
 public class HumREST {
 
-    @Context
-    private UriInfo context;
+    private MeasurementService service;
 
     /**
      * Creates a new instance of HumRESTResource
      */
     public HumREST() {
+        this.service = new MeasurementService();
     }
 
     /**
@@ -36,18 +38,10 @@ public class HumREST {
      * @return an instance of java.lang.String
      */
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * PUT method for updating or creating an instance of HumRESTResource
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCurrentHumInJSON() {
+        Gson gson = new Gson();
+        double hum = this.service.getCurrentHum();
+        return gson.toJson(hum);
     }
 }

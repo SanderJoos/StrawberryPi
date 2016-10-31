@@ -5,6 +5,7 @@
  */
 package rest;
 
+import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -13,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
+import service.MeasurementService;
 
 /**
  * REST Web Service
@@ -22,13 +24,13 @@ import javax.ws.rs.core.MediaType;
 @Path("temp")
 public class TempREST {
 
-    @Context
-    private UriInfo context;
+    private MeasurementService service;
 
     /**
      * Creates a new instance of TempResource
      */
     public TempREST() {
+        this.service = new MeasurementService();
     }
 
     /**
@@ -36,18 +38,9 @@ public class TempREST {
      * @return an instance of java.lang.String
      */
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * PUT method for updating or creating an instance of TempResource
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCurrentTempInJSON() {
+       Gson gson = new Gson();
+       return gson.toJson(service.getCurrentTemp());
     }
 }
