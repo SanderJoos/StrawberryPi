@@ -12,7 +12,7 @@
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>StrawberryPi-DataService</name>
+    <name>StrawberryPiDataService</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -26,9 +26,15 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>StrawberryPi</groupId>
+            <artifactId>StrawBerryPi-Domain</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>StrawberryPiDataService</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

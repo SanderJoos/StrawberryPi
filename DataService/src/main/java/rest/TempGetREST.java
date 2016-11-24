@@ -17,18 +17,18 @@ import javax.ws.rs.core.MediaType;
 /**
  * REST Web Service
  *
- * @author Sander_2
+ * @author Tim
  */
-@Path("HumGet")
-public class HumGetREST {
+@Path("TempGet")
+public class TempGetREST {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of HumGetREST
+     * Creates a new instance of TempGetREST
      */
-    public HumGetREST() {
+    public TempGetREST() {
     }
 
     /**

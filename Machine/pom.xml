@@ -12,7 +12,7 @@
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>StrawberryPi-Machine</name>
+    <name>StrawberryPiMachine</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -38,6 +38,7 @@
     </dependencies>
 
     <build>
+        <finalName>StrawberryPiMachine</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

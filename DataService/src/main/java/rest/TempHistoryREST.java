@@ -17,22 +17,33 @@ import javax.ws.rs.core.MediaType;
 /**
  * REST Web Service
  *
- * @author Sander_2
+ * @author Tim
  */
-@Path("HumGet")
-public class HumGetREST {
+@Path("TempHistory")
+public class TempHistoryREST {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of HumGetREST
+     * Creates a new instance of TempHistoryREST
      */
-    public HumGetREST() {
+    public TempHistoryREST() {
     }
 
     /**
-     * PUT method for updating or creating an instance of TempGetREST
+     * Retrieves representation of an instance of rest.TempHistoryREST
+     * @return an instance of java.lang.String
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getJson() {
+        //TODO return proper representation object
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * PUT method for updating or creating an instance of TempHistoryREST
      * @param content representation for the resource
      */
     @PUT
