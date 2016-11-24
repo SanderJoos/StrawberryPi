@@ -11,6 +11,5 @@
   <modules>
     <module>DataService</module>
     <module>Machine</module>
-    <module>Domain</module>
   </modules>
 </project>

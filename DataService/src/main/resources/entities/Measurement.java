@@ -5,19 +5,28 @@
  */
 package entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
  * @author Sander_2
  */
-public class Measurement {
+@Entity
+public class Measurement implements Serializable{
     
     double temp;
     double hum;
     LocalDate date;
     LocalTime time;
+    
+    @Id
+    @GeneratedValue
+    private Long id;
     
     public Measurement(){
         
@@ -64,6 +73,14 @@ public class Measurement {
 
     public void setTime(LocalTime time) {
         this.time = time;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
     
