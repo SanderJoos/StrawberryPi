@@ -13,6 +13,7 @@ import javax.inject.Inject;
  *
  * @author Sander_2
  */
+//TODO EJB
 public class CentralService {
     
     @Inject

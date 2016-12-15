@@ -22,19 +22,11 @@ public class MeasurementDBService {
     EntityManager em;
     
     public void storeMeasurement(Measurement measurement){
-        em.getTransaction().begin();
         em.persist(measurement);
         em.flush();
-        em.getTransaction().commit();
-        em.close();
     }
     
     public List<Measurement> getAllMeasurements(){
-        try{
-            return em.createQuery("select m from measurement m").getResultList();
-        }
-        finally{
-            em.close();
-        }
+        return em.createQuery("select m from Measurement m").getResultList();
     }
 }
