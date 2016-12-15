@@ -5,10 +5,26 @@
  */
 package gatherers;
 
+import com.google.gson.Gson;
+import entities.Measurement;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+
 /**
  *
  * @author Tim
  */
 public class HumidityGatherer {
-    
+
+    //TODO
+    String URL = "193.191.187.14:xxx/API/hum";
+
+    public double getHumidityMeasurement() {
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(URL);
+        String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
+        return Double.parseDouble(response);
+    }
 }
