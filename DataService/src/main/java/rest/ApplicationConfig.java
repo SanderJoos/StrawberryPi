@@ -29,9 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(rest.HumGetREST.class);
         resources.add(rest.HumHistoryREST.class);
-        resources.add(rest.TempGetREST.class);
         resources.add(rest.TempHistoryREST.class);
     }
     
