@@ -5,10 +5,12 @@
  */
 package service;
 import entities.Measurement;
+import java.sql.Date;
 import java.util.List;
 import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -34,5 +36,17 @@ public class MeasurementDBService {
         Measurement m=em.find(Measurement.class, id);
         em.remove(m);
         em.flush();
+    }
+    
+    public List<Measurement> getAllMeasurementsAfterDate(Date date){
+        Query q= em.createQuery("select m from Measurement m where m.date > :date");
+        q.setParameter("date", date);
+        return q.getResultList();
+    }
+    
+    public List<Measurement> getAllMeasurementsOfDate(Date date){
+        Query q= em.createQuery("select m from Measurement m where m.date = :date");
+        q.setParameter("date", date);
+        return q.getResultList();
     }
 }

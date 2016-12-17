@@ -7,6 +7,7 @@ package service;
 
 import entities.Measurement;
 import gatherers.MeasurementGatherer;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +59,16 @@ public class CentralService {
         this.service.storeMeasurement(m);
     }
     
-     public void deleteMeasurement(long id){
+    public void deleteMeasurement(long id){
         this.service.deleteMeasurement(id);
+    }
+     
+    public void getAllMeasurementsAfterDate(Date date){
+        this.service.getAllMeasurementsAfterDate(date);
+    }
+    
+    public void GetAllMeasurementsOfDate(Date date){
+        this.service.getAllMeasurementsOfDate(date);
     }
     
 }
