@@ -55,7 +55,11 @@ public class CentralService {
     
     public void retrieveNewDate(){
         Measurement m = this.gatherer.getMeasurement();
-        this.service.deleteMeasurement(m);
+        this.service.storeMeasurement(m);
+    }
+    
+     public void deleteMeasurement(long id){
+        this.service.delete(id);
     }
     
 }
