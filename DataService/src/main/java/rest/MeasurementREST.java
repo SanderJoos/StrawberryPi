@@ -27,16 +27,9 @@ public class MeasurementREST {
     @Context
     private UriInfo context;
 
-    /**
-     * Creates a new instance of MeasurementREST
-     */
     public MeasurementREST() {
     }
 
-    /**
-     * Retrieves representation of an instance of rest.MeasurementREST
-     * @return an instance of java.lang.String
-     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
@@ -44,10 +37,6 @@ public class MeasurementREST {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * PUT method for updating or creating an instance of MeasurementREST
-     * @param content representation for the resource
-     */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {

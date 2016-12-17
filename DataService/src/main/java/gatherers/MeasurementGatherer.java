@@ -13,6 +13,7 @@ import javax.inject.Inject;
  * @author Tim
  */
 public class MeasurementGatherer {
+    
     @Inject
     HumidityGatherer humgatherer;
     

@@ -37,16 +37,4 @@ public class MeasurementDBService {
         em.remove(m);
         em.flush();
     }
-    
-    public List<Measurement> getAllMeasurementsAfterDate(Date date){
-        Query q= em.createQuery("select m from Measurement m where m.date > :date");
-        q.setParameter("date", date);
-        return q.getResultList();
-    }
-    
-    public List<Measurement> getAllMeasurementsOfDate(Date date){
-        Query q= em.createQuery("select m from Measurement m where m.date = :date");
-        q.setParameter("date", date);
-        return q.getResultList();
-    }
 }

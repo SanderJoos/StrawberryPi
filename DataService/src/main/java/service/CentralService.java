@@ -5,9 +5,8 @@
  */
 package service;
 
-import entities.Measurement;
+import entities.*;
 import gatherers.MeasurementGatherer;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,56 +18,117 @@ import javax.inject.Inject;
  */
 //TODO EJB
 public class CentralService {
-    
+
     @Inject
     public MeasurementDBService service;
-    
+
     @Inject
     public MeasurementGatherer gatherer;
-    
-    public void storeMeasurement(Measurement measurement){
+
+    public void storeMeasurement(Measurement measurement) {
         service.storeMeasurement(measurement);
     }
-    
-    public List<Measurement> getAllMeasurements(){
+
+    public List<Measurement> getAllMeasurements() {
         return service.getAllMeasurements();
     }
-    
-    public List<Measurement> getAllMeasurementsForDate(LocalDate date){
+
+    public List<Measurement> getAllMeasurementsForDate(LocalDate date) {
         List<Measurement> result = new ArrayList<>();
-        for(Measurement m : this.getAllMeasurements()){
-            if(m.getDate().equals(date)){
+        for (Measurement m : this.getAllMeasurements()) {
+            if (m.getDate().equals(date)) {
                 result.add(m);
             }
         }
         return result;
     }
-    
-    public List<Measurement> getAllMeasurementsAfterDate(LocalDate date){
+
+    public List<Measurement> getAllMeasurementsAfterDate(LocalDate date) {
         List<Measurement> result = new ArrayList<>();
-        for(Measurement m : this.getAllMeasurements()){
-            if(m.getDate().isAfter(date)){
+        for (Measurement m : this.getAllMeasurements()) {
+            if (m.getDate().isAfter(date)) {
                 result.add(m);
             }
         }
         return result;
     }
-    
-    public void retrieveNewDate(){
+
+    public void retrieveNewDate() {
         Measurement m = this.gatherer.getMeasurement();
         this.service.storeMeasurement(m);
     }
-    
-    public void deleteMeasurement(long id){
+
+    public void deleteMeasurement(long id) {
         this.service.deleteMeasurement(id);
     }
-     
-    public void getAllMeasurementsAfterDate(Date date){
-        this.service.getAllMeasurementsAfterDate(date);
+
+    public List<HumidityMeasurement> getAllHumMeasurements() {
+        List<HumidityMeasurement> hums = new ArrayList<>();
+        HumidityMeasurement hum;
+        for (Measurement m : this.getAllMeasurements()) {
+            hum = new HumidityMeasurement(m.getHum(), m.getDate(), m.getTime());
+            hums.add(hum);
+        }
+        return hums;
+    }
+
+    public List<HumidityMeasurement> getAllHumMeasurementsAfterDate(LocalDate date) {
+        List<HumidityMeasurement> hums = new ArrayList<>();
+        HumidityMeasurement hum;
+        for (Measurement m : this.getAllMeasurements()) {
+            if (m.getDate().isAfter(date)) {
+                hum = new HumidityMeasurement(m.getHum(), m.getDate(), m.getTime());
+                hums.add(hum);
+            }
+        }
+        return hums;
     }
     
-    public void GetAllMeasurementsOfDate(Date date){
-        this.service.getAllMeasurementsOfDate(date);
+    public List<HumidityMeasurement> getAllHumMeasurementsForDate(LocalDate date) {
+        List<HumidityMeasurement> hums = new ArrayList<>();
+        HumidityMeasurement hum;
+        for (Measurement m : this.getAllMeasurements()) {
+            if (m.getDate().equals(date)) {
+                hum = new HumidityMeasurement(m.getHum(), m.getDate(), m.getTime());
+                hums.add(hum);
+            }
+        }
+        return hums;
     }
+    
+    public List<TemperatureMeasurement> getAllTemperatureMeasurement() {
+        List<TemperatureMeasurement> temps = new ArrayList<>();
+        TemperatureMeasurement temp;
+        for (Measurement m : this.getAllMeasurements()) {
+            temp = new TemperatureMeasurement(m.getTemp(), m.getDate(), m.getTime());
+            temps.add(temp);
+        }
+        return temps;
+    }
+
+    public List<TemperatureMeasurement> getAllTemperatureMeasurementAfterDate(LocalDate date) {
+        List<TemperatureMeasurement> temps = new ArrayList<>();
+        TemperatureMeasurement temp;
+        for (Measurement m : this.getAllMeasurements()) {
+            if (m.getDate().isAfter(date)) {
+                temp = new TemperatureMeasurement(m.getTemp(), m.getDate(), m.getTime());
+                temps.add(temp);
+            }
+        }
+        return temps;
+    }
+    
+    public List<TemperatureMeasurement> getAllTemperatureMeasurementForDate(LocalDate date) {
+        List<TemperatureMeasurement> temps = new ArrayList<>();
+        TemperatureMeasurement temp;
+        for (Measurement m : this.getAllMeasurements()) {
+            if (m.getDate().equals(date)) {
+                temp = new TemperatureMeasurement(m.getTemp(), m.getDate(), m.getTime());
+                temps.add(temp);
+            }
+        }
+        return temps;
+    }
+    
     
 }
