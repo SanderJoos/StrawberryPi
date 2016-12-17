@@ -5,6 +5,7 @@
  */
 package entities;
 
+import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,6 +21,7 @@ import javax.persistence.Id;
 public class Measurement implements Serializable{
     
     double temp;
+    @SerializedName("humidity")
     double hum;
     LocalDate date;
     LocalTime time;

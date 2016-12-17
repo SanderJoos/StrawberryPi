@@ -7,16 +7,9 @@ package python.reader;
 
 import com.google.gson.Gson;
 import entities.Measurement;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.StringWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.script.ScriptContext;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import javax.script.SimpleScriptContext;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -26,22 +19,26 @@ public class PythonReader implements IPythonReader{
 
     @Override
     public Measurement getCurrentMeasurement() {
-
-        StringWriter writer = new StringWriter();
-
-        ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptContext context = new SimpleScriptContext();
-
-        context.setWriter(writer);
-        ScriptEngine engine = manager.getEngineByName("python");
+            String result = "";
         try {
-            engine.eval(new FileReader("/projects/readdata.py"), context);
-        } catch (ScriptException | FileNotFoundException ex) {
-            Logger.getLogger(PythonReader.class.getName()).log(Level.SEVERE, null, ex);
+            Runtime r = Runtime.getRuntime();                    
+
+            Process p = r.exec("python /projects/readdata.py");
+
+            BufferedReader in =new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                System.out.println("inputline="+inputLine);
+                result += inputLine;
+            }
+            in.close();
+
+        } catch (IOException e) {
+            System.out.println(e);
         }
         Gson gson = new Gson();
-        Measurement measurement=gson.fromJson(writer.toString(), Measurement.class);
-        System.out.println(writer.toString());
+        System.out.println(result);
+        Measurement measurement=gson.fromJson(result, Measurement.class);
         return measurement;
     }
     
