@@ -29,4 +29,10 @@ public class MeasurementDBService {
     public List<Measurement> getAllMeasurements(){
         return em.createQuery("select m from Measurement m").getResultList();
     }
+
+    public void deleteMeasurement(long id) {
+        Measurement m=em.find(Measurement.class, id);
+        em.remove(m);
+        em.flush();
+    }
 }

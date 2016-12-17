@@ -59,7 +59,7 @@ public class CentralService {
     }
     
      public void deleteMeasurement(long id){
-        this.service.delete(id);
+        this.service.deleteMeasurement(id);
     }
     
 }
