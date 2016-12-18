@@ -17,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 public class TemperatureGatherer {
 
     //TODO
-    String URL = "193.191.187.14:xxx/API/temp";
+    String URL = "193.191.187.14:11378/StrawberryPi-Machine/API/temp";
 
     public double getTempMeasurement() {
         Client client = ClientBuilder.newClient();

@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 public class HumidityGatherer {
 
     //TODO
-    String URL = "193.191.187.14:xxx/API/hum";
+    String URL = "193.191.187.14:11378/StrawberryPi-Machine/API/hum";
 
     public double getHumidityMeasurement() {
         Client client = ClientBuilder.newClient();
