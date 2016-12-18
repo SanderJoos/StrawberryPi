@@ -1,5 +1,5 @@
-{
-  "users": [
+
+[
     {
       "username": "Sander",
       "password": "t"
@@ -12,5 +12,4 @@
       "username": "Kemme",
       "password": "t"
     }
-  ]
-}
+]

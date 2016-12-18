@@ -66,7 +66,8 @@ public class CentralService {
     }
 
     public boolean retrieveNewDate() {
-        Measurement m = this.gatherer.getMeasurement();
+        //Measurement m = this.gatherer.getMeasurement();
+        Measurement m = new Measurement(33.33,55.55);
         if(m != null){
             this.service.storeMeasurement(m);
             return true;

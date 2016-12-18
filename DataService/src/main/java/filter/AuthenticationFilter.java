@@ -5,14 +5,9 @@
  */
 package filter;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import entities.User;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.util.Base64;
-import java.util.List;
 import java.util.StringTokenizer;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
@@ -36,6 +31,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     }
 
     public boolean authenticate(String authCredentials) {
+        System.out.println("entered Authentication");
         if (null == authCredentials) {
             return false;
         }
@@ -55,17 +51,10 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         
         User auth = new User(username, password);
         
-        ClassLoader loader = getClass().getClassLoader();
-        InputStream is = loader.getResourceAsStream("users.json");
-        
-        Type listType = new TypeToken<List<User>>() {}.getType();
-        List<User> users = new Gson().fromJson(is.toString(), listType);
-        
-        for(User u : users){
-            if(u.equals(auth)){
-                return true;
-            }
+        if(auth.equals(new User("Sander","t")) ||auth.equals(new User("Tim","t"))||auth.equals(new User("Kemme","t"))){
+            return true;
         }
+
         return false;
     }
 }
