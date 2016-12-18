@@ -22,6 +22,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Sander_2
  */
+
 public class AuthenticationFilter implements ContainerRequestFilter {
 
     @Override
@@ -31,7 +32,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         if(!authenticated){
             req.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("no valid authentication").build());
         }
-
     }
 
     public boolean authenticate(String authCredentials) {

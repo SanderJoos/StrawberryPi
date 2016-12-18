@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 import service.CentralService;
 import com.google.gson.Gson;
+import filter.Authenticate;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.ws.rs.DELETE;
@@ -36,6 +37,7 @@ public class MeasurementREST {
     }
 
     @GET
+    @Authenticate
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllMeasurements() {
         Gson gson = new Gson();
@@ -43,6 +45,7 @@ public class MeasurementREST {
     }
 
     @PUT
+    @Authenticate
     @Path("new")
     @Produces(MediaType.APPLICATION_JSON)
     public String getNewMeasurement() {
@@ -51,6 +54,7 @@ public class MeasurementREST {
     }
     
     @DELETE
+    @Authenticate
     @Path("delete-{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void deleteMeasurement(@PathParam("id")long id){
@@ -58,6 +62,7 @@ public class MeasurementREST {
     }
     
     @GET
+    @Authenticate
     @Path("on-{dateString}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getMeasurementsOnDate(@PathParam("dateString")String dateString){
@@ -67,6 +72,7 @@ public class MeasurementREST {
     }
     
     @GET
+    @Authenticate
     @Path("before-{dateString}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getMeasurementsBeforeDate(@PathParam("dateString")String dateString){
@@ -76,6 +82,7 @@ public class MeasurementREST {
     }
     
     @GET
+    @Authenticate
     @Path("after-{dateString}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getMeasurementsAfterDate(@PathParam("dateString")String dateString){

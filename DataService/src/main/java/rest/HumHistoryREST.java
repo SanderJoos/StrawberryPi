@@ -6,6 +6,7 @@
 package rest;
 
 import com.google.gson.Gson;
+import filter.Authenticate;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.inject.Inject;
@@ -31,6 +32,7 @@ public class HumHistoryREST {
     }
 
     @GET
+    @Authenticate
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllHumidityMeasurements() {
         Gson gson = new Gson();
@@ -38,6 +40,7 @@ public class HumHistoryREST {
     }
 
     @GET
+    @Authenticate
     @Path("on-{dateString}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getHumMeasurementsOnDate(@PathParam("dateString")String dateString){
@@ -47,6 +50,7 @@ public class HumHistoryREST {
     }
     
     @GET
+    @Authenticate
     @Path("before-{dateString}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getHumMeasurementsBeforeDate(@PathParam("dateString")String dateString){
@@ -56,6 +60,7 @@ public class HumHistoryREST {
     }
     
     @GET
+    @Authenticate
     @Path("after-{dateString}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getHumMeasurementsAfterDate(@PathParam("dateString")String dateString){
