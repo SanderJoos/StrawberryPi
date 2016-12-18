@@ -22,7 +22,7 @@ import service.CentralService;
  *
  * @author Tim
  */
-@Path("hum")
+@Path("humidity")
 public class HumHistoryREST {
 
     @Inject
