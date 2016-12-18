@@ -5,14 +5,16 @@
  */
 package rest;
 
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
+import com.google.gson.Gson;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.inject.Inject;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import service.CentralService;
 
 /**
  * REST Web Service
@@ -22,32 +24,43 @@ import javax.ws.rs.core.MediaType;
 @Path("HumHistory")
 public class HumHistoryREST {
 
-    @Context
-    private UriInfo context;
-
-    /**
-     * Creates a new instance of HumHistoryREST
-     */
+    @Inject
+    public CentralService service; 
+    
     public HumHistoryREST() {
     }
 
-    /**
-     * Retrieves representation of an instance of rest.HumHistoryREST
-     * @return an instance of java.lang.String
-     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    public String getAllHumidityMeasurements() {
+        Gson gson = new Gson();
+        return gson.toJson(service.getAllHumMeasurements());
     }
 
-    /**
-     * PUT method for updating or creating an instance of HumHistoryREST
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    @GET
+    @Path("on-{dateString}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getHumMeasurementsOnDate(@PathParam("dateString")String dateString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateString, formatter);
+        return new Gson().toJson(service.getAllHumMeasurementsOnDate(date));
+    }
+    
+    @GET
+    @Path("before-{dateString}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getHumMeasurementsBeforeDate(@PathParam("dateString")String dateString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateString, formatter);
+        return new Gson().toJson(service.getAllHumMeasurementsBeforeDate(date));
+    }
+    
+    @GET
+    @Path("after-{dateString}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getHumMeasurementsAfterDate(@PathParam("dateString")String dateString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateString, formatter);
+        return new Gson().toJson(service.getAllHumMeasurementsAfterDate(date));
     }
 }

@@ -5,12 +5,10 @@
  */
 package service;
 import entities.Measurement;
-import java.sql.Date;
 import java.util.List;
 import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *

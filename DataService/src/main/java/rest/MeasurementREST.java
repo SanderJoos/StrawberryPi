@@ -5,15 +5,20 @@
  */
 package rest;
 
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
+import service.CentralService;
+import com.google.gson.Gson;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.PathParam;
 
 /**
  * REST Web Service
@@ -23,22 +28,59 @@ import javax.ws.rs.core.MediaType;
 @Path("measurement")
 @RequestScoped
 public class MeasurementREST {
-
-    @Context
-    private UriInfo context;
+    
+    @Inject
+    private CentralService service;
 
     public MeasurementREST() {
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    public String getAllMeasurements() {
+        Gson gson = new Gson();
+        return gson.toJson(service.getAllMeasurements());
     }
 
     @PUT
+    @Path("new")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getNewMeasurement() {
+        Gson gson = new Gson();
+        return gson.toJson(service.retrieveNewDate());
+    }
+    
+    @DELETE
+    @Path("delete-{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    public void deleteMeasurement(@PathParam("id")long id){
+        service.deleteMeasurement(id);
+    }
+    
+    @GET
+    @Path("on-{dateString}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getMeasurementsOnDate(@PathParam("dateString")String dateString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateString, formatter);
+        return new Gson().toJson(service.getAllMeasurementsOnDate(date));
+    }
+    
+    @GET
+    @Path("before-{dateString}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getMeasurementsBeforeDate(@PathParam("dateString")String dateString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateString, formatter);
+        return new Gson().toJson(service.getAllMeasurementsBeforeDate(date));
+    }
+    
+    @GET
+    @Path("after-{dateString}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getMeasurementsAfterDate(@PathParam("dateString")String dateString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateString, formatter);
+        return new Gson().toJson(service.getAllMeasurementsAfterDate(date));
     }
 }
