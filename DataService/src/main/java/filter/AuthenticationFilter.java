@@ -23,6 +23,7 @@ import javax.ws.rs.core.Response;
  * @author Sander_2
  */
 
+@Authenticate
 public class AuthenticationFilter implements ContainerRequestFilter {
 
     @Override

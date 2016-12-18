@@ -5,6 +5,50 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">measurement API</a></li>
+                <li><a href="temp.html">temperature API</a></li>
+                <li><a href="hum.html">humidity API</a></li>
+            </ul>
+        </nav>
+        <h1>This page will teach you everything about the use of the API</h1>
+        <p>please note that every API call except for getting all measurements will require basic authentication. You can use the username "Kemme" and the password "t" to authenticate.</p>
+     
+        <h3>Getting all measurements in the database</h3>
+        <p>Getting all measurements currently in the database can be doing a get request through the following link:
+            <a href="http://193.191.187.14:11378/StrawberrPiDataservice/API/measurement/">http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/</a>. This will return all measurements
+        in the database in JSON format</p>
+        
+        <h3>Adding a new measurement in the database</h3>
+        <p>Adding a new entry to the database of measurements can be done by doing a put request trough the following link:
+        <a href="http://193.191.187.14:11378/StrawberrPiDataservice/API/measurement/new">http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/new</a>. This will result in a call
+        to the rest endpoints on the project that can be installed on the raspberry pi, that will give a new measurement which will be added to the database.</p>
+        
+        <h3>Deleting a measurement from the database</h3>
+        <p>Param: long id</p>
+        <p>Deleting a measurement from the database can be done by doing a delete request through the following link:
+            <a href="http://193.191.187.14:11378/StrawberrPiDataservice/API/measurement/delete-1">http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/delete-1</a>. The 1 in 
+            the url is here an example for the parameter id, identifying which measurement has to be deleted. The full logical path without filled-in parameter is: 
+            <b>http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/delete-{id}</b></p>
+        
+        <h3>Requesting all measurements before a given date</h3>
+        <p>Param: date in stringformat. The format for the string is: yyyy-MM-dd</p>
+        <p>Getting all measurements before a given date can be done by the following URL: <b>http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/before-{dateString}</b>. {dateString}
+            is the wanted date in the format: yyyy-MM-dd. This will initiate a get request that returns all the measurements before the given date in json format. An example:
+            <a href="http://193.191.187.14:11378/StrawberrPiDataservice/API/measurement/before-2016-12-18">http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/before-2016-12-18</a></p>
+        
+        <h3>Requesting all measurements after a given date</h3>
+        <p>Param: date in stringformat. The format for the string is: yyyy-MM-dd</p>
+        <p>Getting all measurements after a given date can be done by the following URL: <b>http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/after-{dateString}</b>. {dateString}
+            is the wanted date in the format: yyyy-MM-dd. This will initiate a get request that returns all the measurements after the given date in json format. An example:
+            <a href="http://193.191.187.14:11378/StrawberrPiDataservice/API/measurement/after-2016-12-18">http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/after-2016-12-18</a></p>
+        
+        <h3>Requesting all measurements on a given date</h3>
+        <p>Param: date in stringformat. The format for the string is: yyyy-MM-dd</p>
+        <p>Getting all measurements on a given date can be done by the following URL: <b>http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/on-{dateString}</b>. {dateString}
+            is the wanted date in the format: yyyy-MM-dd. This will initiate a get request that returns all the measurements on the given date in json format. An example:
+            <a href="http://193.191.187.14:11378/StrawberrPiDataservice/API/measurement/on-2016-12-18">http://193.191.187.14:11378/StrawberryPiDataservice/API/measurement/on-2016-12-18</a></p>
+        
     </body>
 </html>

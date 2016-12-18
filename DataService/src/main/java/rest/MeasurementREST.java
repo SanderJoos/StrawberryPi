@@ -37,7 +37,6 @@ public class MeasurementREST {
     }
 
     @GET
-    @Authenticate
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllMeasurements() {
         Gson gson = new Gson();

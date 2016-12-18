@@ -22,7 +22,7 @@ import service.CentralService;
  *
  * @author Tim
  */
-@Path("TempHistory")
+@Path("temperature")
 public class TempHistoryREST {
 
     @Inject
